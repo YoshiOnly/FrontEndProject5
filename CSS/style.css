@@ -1,0 +1,105 @@
+/* Palette */
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}
+
+.primary {
+  color: #2B1B29;
+}
+
+.header {
+  background-color: #F3E9F1 !important;
+  min-height: 200px;
+  color: #2B1B29 !important;
+}
+
+.footer {
+  background-color: #F3E9F1 !important;
+  min-height: 200px;
+  color: #2B1B29 !important;
+  padding-top: 50px;
+}
+
+.main {
+  background-color: #2B1B29;
+  min-height: 1000px;
+  color: white;
+  text-align: center;
+}
+
+.fa {
+  font-size: 32px;
+}
+
+.card-body {
+  background-color: #F3E9F1;
+  color: #2B1B29;
+}
+
+.card {
+  margin: 5px;
+}
+
+.navbar {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-between;
+}
+
+a {
+  color: unset;
+}
+a:hover {
+  color: #864AEF !important;
+}
+
+.site-navigation {
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+}
+
+li {
+  display: flex;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.addToCartBtn:active {
+  background-color: #864AEF;
+}
+
+.disabled {
+  background-color: gray;
+}
+
+h1 {
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.small-card {
+  width: 100%;
+  min-width: 200px;
+}
+@media screen and (min-width: 1000px) {
+  .small-card {
+    width: 25%;
+  }
+}
+
+.flex {
+  display: flex;
+  flex-wrap: inherit;
+}
+
+/*# sourceMappingURL=style.css.map */
