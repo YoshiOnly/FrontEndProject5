@@ -23,16 +23,13 @@ function checkProduct(article){
     if(window.location.search != null)
     {
         var key = articleParameter.get('id')
-    }
-    else
-    {
-        var key = sessionStorage.getItem("product")
-    }
-    if(article._id == key){
-        displayArticle(article)
+        if(article._id == key){
+            displayArticle(article)
+        }
     }
     else{
-        console.log("wrong product")
+        console.log("no id")
+        window.alert("Error 404")
     }
 }
 

@@ -38,14 +38,11 @@ function displayArticle(article) {
 
     cloneElt.getElementById("cardName").textContent = article.name
     cloneElt.getElementById("cardImage").src = article.imageUrl
-    cloneElt.getElementById("cardDescription").textContent = article.description
     cloneElt.getElementById("cardPrice").textContent = displayInEUR(article.price)
-    cloneElt.getElementById("cardID").textContent = article._id
-    cloneElt.getElementById("cardNumber").textContent = cardCount
+
     var eltNumber = cardCount -= 1
 
     cloneElt.getElementById("seeProduct").addEventListener("click", function(){
-        sessionStorage.setItem(`product`, article._id )
         window.location.href = `file:///C:/Users/jonat/OneDrive/Bureau/Projet%205/Front-end/Pages/produit.html?id=${article._id}`;
     })
     cardCount++

@@ -42,6 +42,7 @@
 
 .card {
   margin: 5px;
+  height: 100%;
 }
 
 .navbar {
@@ -90,16 +91,48 @@ h2 {
 .small-card {
   width: 100%;
   min-width: 200px;
+  margin: 0.5%;
 }
 @media screen and (min-width: 1000px) {
   .small-card {
-    width: 25%;
+    width: 24%;
+  }
+  .small-card #cardImage {
+    height: 200px;
   }
 }
 
 .flex {
   display: flex;
   flex-wrap: inherit;
+}
+
+#start {
+  padding-bottom: 20px;
+}
+
+#cardName {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: unset;
+}
+
+#cardPrice {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.form {
+  font-weight: bold;
+}
+
+.label {
+  margin-right: 20px;
+}
+
+.confirmationText {
+  padding: 20px;
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */

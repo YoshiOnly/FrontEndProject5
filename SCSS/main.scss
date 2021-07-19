@@ -51,6 +51,7 @@ $transparent: rgba(255, 255, 255, 0);
 
 .card {
     margin: 5px;
+    height: 100%;
 }
 
 .navbar{
@@ -101,13 +102,48 @@ h2 {
 
 .small-card {
     @media screen and (min-width: 1000px) {
-    width: 25%;
+    width: 24%;
+     #cardImage {
+        height: 200px;
     }
+    }
+
     width: 100%;
     min-width: 200px;
+    margin: 0.5%;
 }
+
+
 
 .flex {
     display: flex;
     flex-wrap: inherit;
+}
+
+#start {
+    padding-bottom: 20px;
+}
+
+#cardName {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: unset;
+}
+
+#cardPrice {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form {
+    font-weight: bold;
+}
+
+.label {
+    margin-right: 20px;
+}
+
+.confirmationText {
+    padding: 20px;
+    display: block;
 }
