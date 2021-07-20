@@ -1,13 +1,14 @@
-var cardCount = 1
+// Fichier js de la page produit
 
+// Récupération des parametre de l'url
 articleParameter = new URLSearchParams(window.location.search)
 
 let selectedColor = null
 let numberOfProducts = null
 
-
 main()
 
+/** Fonction main */
 async function main() {
     const articles = await getArticles()
     console.log(articles)
@@ -19,6 +20,9 @@ async function main() {
     console.log(window.location.search)
 }
 
+/** Récupération des URLsearchparameters 
+ * @param {var} article - article du serveur.
+*/
 function checkProduct(article){
     if(window.location.search != null)
     {
@@ -33,6 +37,7 @@ function checkProduct(article){
     }
 }
 
+/** Récupération des données du serveur en fonction des paramétres */
 function getArticles() {
     return fetch("http://localhost:3000/api/teddies")
     .then(function(httpBodyResponse) {
@@ -50,7 +55,9 @@ function getArticles() {
 
         
 
-
+/** Affichage de la carte produit 
+ * @param {var} article - article du serveur.
+*/
 function displayArticle(article) {
 
     const templateElt = document.getElementById("templateArticle")
@@ -90,6 +97,7 @@ function displayArticle(article) {
                     sessionStorage.setItem(`order ${article.name}-color`, selectedColor )
                     sessionStorage.setItem(`order ${article.name}-quantity`, numberOfProducts )
                     this.classList.add("disabled");
+                    window.alert("L'objet a été ajouté à votre panier")
                 }
                 else {
                     window.alert("Veuillez choisir la quantité voulue")
@@ -103,8 +111,6 @@ function displayArticle(article) {
             window.alert("L'objet est déjà dans votre panier");
         }
     })
-    
-    cardCount++
 
     document.getElementById("start").appendChild(cloneElt)
 

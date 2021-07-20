@@ -1,10 +1,9 @@
-var cardCount = 1
-var KeyNames = [];
+// fichier js du panier
 
+//prix total de la commande
 var totalPrice = 0;
 
-
-
+// modéle du contact
 var contact =  {
     firstName: "" ,
     lastName: "" ,
@@ -13,8 +12,10 @@ var contact =  {
     email: ""
 }
 
+// Array d'id des articles commandés
 var products = [];
 
+// formulaire pour l'API avant JSON
 var commandForm = { contact, products};
 
 //vérification regex
@@ -25,8 +26,7 @@ const regexAddress = /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/;
 
 main()
 
-
-
+/** Fonction main */
 async function main() {
 
     //recupération des données
@@ -47,7 +47,7 @@ async function main() {
     //test
 }
 
-//Comparaison des données du paniers aux données serveurs
+/** Comparaison des données du paniers aux données du serveur */
 function checkArticle(article) {
     for (i = 0; i < sessionStorage.length ; i++) {
         var key = sessionStorage.key(i)
@@ -63,8 +63,7 @@ function checkArticle(article) {
     }
 }
 
-
-// Récupération des données du serveur
+/** Récupération des données du serveur */
 function getArticles() {
     return fetch("http://localhost:3000/api/teddies")
     .then(function(httpBodyResponse) {
@@ -79,7 +78,10 @@ function getArticles() {
     })
 }
 
-// Affichage des données
+/** Affichage des données 
+ * @param {var} article - article du serveur.
+ * @param {float} articleQuantity - Quantité d'artices comamndés.
+*/
 function displayArticle(article, articleQuantity) {
 
     //clonage du template
@@ -105,49 +107,60 @@ function displayArticle(article, articleQuantity) {
 
 }
 
-//Confirmation des données
+/** Confirmation des données */
 function confirmOrder() {
     //Sur submit :
     document.getElementById("orderBtn").addEventListener("click",async function(event){
         event.preventDefault();
         // check form, if it's ok
         checkForm()
-        if ((regexMail.test(contact.email) == true) &
-        (regexName.test(contact.firstName) == true) &
-        (regexName.test(contact.lastName) == true) &
-        (regexCity.test(contact.city) == true) &
-        (regexAddress.test(contact.address) == true)) {
-        console.log(contact)
-        console.log(products)
-        // send info to server
-        commandForm = { contact, products};
+        if (regexMail.test(contact.email) == true) {
+            if (regexName.test(contact.firstName) == true) {
+                if (regexName.test(contact.lastName) == true) {
+                    if (regexCity.test(contact.city) == true) {
+                        if (regexAddress.test(contact.address) == true) {
+                            console.log(contact)
+                            console.log(products)
+                            // send info to server
+                            commandForm = { contact, products};
 
-        let promise = await procedeToPayment(commandForm)
-        // send info to localStorage
-        
-
-        console.log(promise)
-        // go to confirm page
-        // 
-        // 
-
+                            let promise = await procedeToPayment(commandForm)
+                            // send info to localStorage
+                            console.log(promise)
+                            // go to confirm page
+                        }
+                        else {
+                            window.alert("L'adresse n'est pas correct")
+                        }
+                    }
+                    else {
+                        window.alert("La ville n'est pas correct")
+                    }
+                }
+                else {
+                    window.alert("Le nom de famille n'est pas correct")
+                }
+            }
+            else {
+                window.alert("Le prenom n'est pas correct")
+            }
         }
-        else [
-            window.alert("Le formulaire de contact est n'est pas correct")
-        ]
-        
-        
+        else {
+            window.alert("L'e-mail n'est pas correct")
+        }         
     })
 }
 
 
-// Confirmation du prix
+/** Confirmation du prix */
 function checkPrice() {
     document.getElementById("totalPrice").textContent = `Votre panier est de ${currencyDisplay.currencyInEUR(totalPrice)} EUR`
     console.log("check price")
 }
 
-//Récupération des données du serveur aprés envoie du formulaire
+/** Récupération des données du serveur aprés envoie du formulaire 
+ * @param {var} commandForm - formulaire pour l'api avant tranformation en JSON.
+*/
 function procedeToPayment(commandForm) {
     return fetch("http://localhost:3000/api/teddies/order" ,{
         method: "POST" ,
@@ -173,6 +186,7 @@ function procedeToPayment(commandForm) {
     });
 }
 
+/** Récupération des données du formulaire */
  function checkForm() {
      contact.firstName = document.getElementById("firstName").value;
      contact.lastName = document.getElementById("lastName").value;
