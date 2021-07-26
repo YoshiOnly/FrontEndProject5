@@ -3,6 +3,12 @@
 //prix total de la commande
 var totalPrice = 0;
 
+class currencyDisplay {
+    static currencyInEUR(value) {
+        return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value/100);
+    }
+}
+
 // modéle du contact
 var contact =  {
     firstName: "" ,
@@ -100,6 +106,9 @@ function displayArticle(article, articleQuantity) {
     cloneElt.getElementById("seeProduct").addEventListener("click", function(){
         window.location.href = `file:///C:/Users/jonat/OneDrive/Bureau/Projet%205/Front-end/Pages/produit.html?id=${article._id}`;
     })
+    cloneElt.getElementById("removeProduct").addEventListener("click", function(){
+        removeArticle(article);
+    })
 
     //ajout du clone sur le html
     document.getElementById("start").appendChild(cloneElt)
@@ -154,7 +163,13 @@ function confirmOrder() {
 
 /** Confirmation du prix */
 function checkPrice() {
-    document.getElementById("totalPrice").textContent = `Votre panier est de ${currencyDisplay.currencyInEUR(totalPrice)} EUR`
+    if(totalPrice > 0) {
+        document.getElementById("totalPrice").textContent = `Votre panier est de ${currencyDisplay.currencyInEUR(totalPrice)} EUR`
+    }
+    else {
+        document.getElementById("totalPrice").textContent = `Votre panier est vide`
+    }
+    
     console.log("check price")
 }
 
@@ -198,3 +213,24 @@ function procedeToPayment(commandForm) {
         console.log("contact is good")
      }
  }
+
+function removeArticle(article) {
+    for (i = 0; i < sessionStorage.length ; i++) {
+        var key = sessionStorage.key(i);
+        var value = sessionStorage.getItem(key)
+        if( article._id == value){
+            var articleQuantity = sessionStorage.getItem(`${key}-quantity`)
+            articleQuantity -= 1;
+            sessionStorage.setItem(`${key}-quantity` , articleQuantity)
+            if(articleQuantity == 0) {
+                sessionStorage.removeItem(`${key}-quantity`)
+                sessionStorage.removeItem(key)
+            }
+            window.location.href = `file:///C:/Users/jonat/OneDrive/Bureau/Projet%205/Front-end/Pages/panier.html`;
+            console.log("article removed")
+        }
+        else {
+            console.log("fail to remove article")
+        }
+    }
+}

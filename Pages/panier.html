@@ -16,7 +16,6 @@
 
     <script src="https://kit.fontawesome.com/fe86d4450e.js" crossorigin="anonymous"></script>
 
-    <script src="../JS/static.js" defer ></script>
     <script src="../JS/panier.js" defer ></script>
 
     <title>Panier - Orinoco</title>
@@ -59,7 +58,8 @@
                                     <div id="cardPrice">
                                         [contenu de la carte]
                                     </div>
-                                    <button id="seeProduct" class="seeProduct">Voir le produit</button>
+                                    <button id="seeProduct" class="seeProduct btnPurp btnSmall">Voir le produit</button>
+                                    <button id="removeProduct" class="seeProduct btnPurp btnSmall">Retirer un produit</button>
                                 </div>
                             </div>
                         </article>
@@ -76,16 +76,15 @@
                         <h2>Formulaire de commande</h2>
                         <form class="form">
                             <div class="col-3">
-                                <div><label class="label" for="firstName ">Prenom</label></div>
-                                <div><label class="label" for="lastName ">Nom</label></div>
-                                <div><label class="label" for="adress ">Adresse</label></div>
-                                <div><label class="label" for="city ">Ville</label></div>
-                                <div><label class="label" for="email ">E-mail</label></div>
-                                <div><label class="label" for="Passer commande: "></label></div>
-                                <div><input type="submit" id="orderBtn" class="orderBtn"></div>
+                                <div><label class="label" for="firstName">Prénom</label></div>
+                                <div><label class="label" for="lastName">Nom</label></div>
+                                <div><label class="label" for="adress">Adresse</label></div>
+                                <div><label class="label" for="city">Ville</label></div>
+                                <div><label class="label" for="email">E-mail</label></div>
+                                <div><input type="submit" id="orderBtn" class="orderBtn btnPurp btnBig"></div>
                             </div>
                             <div class="col-9">
-                                <div><input id="firstName" type="text" name="firstName"value=""></div>
+                                <div><input id="firstName" type="text" name="firstName" value=""></div>
                             <div><input id="lastName" type="text" name="lastName" value=""></div>
                             <div><input id="adress" type="text" name="adress" value=""></div>
                             <div><input id="city" type="text" name="city" value=""></div>
