@@ -1,7 +1,7 @@
 // fichier js du panier
 
 //prix total de la commande
-var totalPrice = 0;
+let totalPrice = 0;
 
 class currencyDisplay {
     static currencyInEUR(value) {
@@ -10,7 +10,7 @@ class currencyDisplay {
 }
 
 // modéle du contact
-var contact =  {
+let contact =  {
     firstName: "" ,
     lastName: "" ,
     address: "",
@@ -19,16 +19,16 @@ var contact =  {
 }
 
 // Array d'id des articles commandés
-var products = [];
+let products = [];
 
 // formulaire pour l'API avant JSON
-var commandForm = { contact, products};
+let commandForm = { contact, products};
 
 //vérification regex
 const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
 const regexCity = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+)){1,10}$/;
-const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
-const regexAddress = /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/;
+const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,4}$/;
+const regexAddress = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
 
 main()
 
@@ -81,6 +81,7 @@ function getArticles() {
     .catch(function(error)
     {
         alert(error)
+        alert("Le serveur ne répond pas")
     })
 }
 
@@ -104,7 +105,7 @@ function displayArticle(article, articleQuantity) {
         products.push(`${article._id}`)
     }
     cloneElt.getElementById("seeProduct").addEventListener("click", function(){
-        window.location.href = `file:///C:/Users/jonat/OneDrive/Bureau/Projet%205/Front-end/Pages/produit.html?id=${article._id}`;
+        window.location.href = `./produit.html?id=${article._id}`;
     })
     cloneElt.getElementById("removeProduct").addEventListener("click", function(){
         removeArticle(article);
@@ -139,23 +140,23 @@ function confirmOrder() {
                             // go to confirm page
                         }
                         else {
-                            window.alert("L'adresse n'est pas correct")
+                            alert("L'adresse n'est pas correct")
                         }
                     }
                     else {
-                        window.alert("La ville n'est pas correct")
+                        alert("La ville n'est pas correct")
                     }
                 }
                 else {
-                    window.alert("Le nom de famille n'est pas correct")
+                    alert("Le nom de famille n'est pas correct")
                 }
             }
             else {
-                window.alert("Le prenom n'est pas correct")
+                alert("Le prenom n'est pas correct")
             }
         }
         else {
-            window.alert("L'e-mail n'est pas correct")
+            alert("L'e-mail n'est pas correct")
         }         
     })
 }
@@ -192,12 +193,13 @@ function procedeToPayment(commandForm) {
         localStorage.setItem("order", JSON.stringify(articles));
         localStorage.setItem("orderInfo", totalPrice);
         sessionStorage.clear()
-        window.location.href = "file:///C:/Users/jonat/OneDrive/Bureau/Projet%205/Front-end/Pages/confirmation.html";
+        window.location.href = "./confirmation.html";
         return articles
     })
     .catch(function(error)
     {
         alert(error)
+        alert("Le serveur ne répond pas")
     });
 }
 
@@ -216,17 +218,17 @@ function procedeToPayment(commandForm) {
 
 function removeArticle(article) {
     for (i = 0; i < sessionStorage.length ; i++) {
-        var key = sessionStorage.key(i);
-        var value = sessionStorage.getItem(key)
+        let key = sessionStorage.key(i);
+        let value = sessionStorage.getItem(key)
         if( article._id == value){
-            var articleQuantity = sessionStorage.getItem(`${key}-quantity`)
+            let articleQuantity = sessionStorage.getItem(`${key}-quantity`)
             articleQuantity -= 1;
             sessionStorage.setItem(`${key}-quantity` , articleQuantity)
             if(articleQuantity == 0) {
                 sessionStorage.removeItem(`${key}-quantity`)
                 sessionStorage.removeItem(key)
             }
-            window.location.href = `file:///C:/Users/jonat/OneDrive/Bureau/Projet%205/Front-end/Pages/panier.html`;
+            window.location.href = `./panier.html`;
             console.log("article removed")
         }
         else {

@@ -3,6 +3,7 @@
 // Récupération des parametre de l'url
 articleParameter = new URLSearchParams(window.location.search)
 
+// emplacement de stockage des variables du formulaire
 let selectedColor = null
 let numberOfProducts = null
 
@@ -33,7 +34,7 @@ function checkProduct(article){
     }
     else{
         console.log("no id")
-        window.alert("Error 404")
+        alert("Error 404")
     }
 }
 
@@ -49,6 +50,7 @@ function getArticles() {
     .catch(function(error)
     {
         alert(error)
+        alert("Le serveur ne répond pas")
     })
 }
 
@@ -74,7 +76,7 @@ function displayArticle(article) {
 
     colorSelector = cloneElt.getElementById("cardColor")
     for(color of article.colors){
-        var colorOption = document.createElement('option');
+        let colorOption = document.createElement('option');
         colorOption.appendChild( document.createTextNode(`${color}`));
         colorOption.value = `${color}`;
         colorSelector.appendChild(colorOption);
@@ -97,18 +99,18 @@ function displayArticle(article) {
                     sessionStorage.setItem(`order ${article.name}-color`, selectedColor )
                     sessionStorage.setItem(`order ${article.name}-quantity`, numberOfProducts )
                     this.classList.add("disabled");
-                    window.alert("L'objet a été ajouté à votre panier")
+                    alert("L'objet a été ajouté à votre panier")
                 }
                 else {
-                    window.alert("Veuillez choisir la quantité voulue")
+                    alert("Veuillez choisir la quantité voulue")
                 }
             }
             else {
-                window.alert("Veuillez choisir une couleur")
+                alert("Veuillez choisir une couleur")
             }
         }
         else {
-            window.alert("L'objet est déjà dans votre panier");
+            alert("L'objet est déjà dans votre panier");
         }
     })
 

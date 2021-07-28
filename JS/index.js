@@ -1,11 +1,6 @@
 // Fichier js de la page catalogue
 
 
-// url de base de la page produit
-var urlProduct = new URL("file:///C:/Users/jonat/OneDrive/Bureau/Projet%205/Front-end/Pages/produit.html")
-
-
-
 main()
 
 /** Fonction main */
@@ -29,11 +24,13 @@ function getArticles() {
     .catch(function(error)
     {
         alert(error)
+        alert("Le serveur ne répond pas")
     })
 }
 
 /** Affichage des articles 
  * @param {var} article - article du serveur.
+ * utilisation d'un template dans la page html
 */
 function displayArticle(article) {
 
